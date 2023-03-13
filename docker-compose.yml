@@ -6,7 +6,6 @@ services:
       context: ./api
       args:
         - DEV=true
-    hostname: api
     ports:
       - "8000:8000"
     volumes:
@@ -20,7 +19,6 @@ services:
       - DB_NAME=devdb
       - DB_USER=devuser
       - DB_PASS=changeme
-      - ALLOWED_HOSTS=api,127.0.0.1,localhost
       - DEBUG=1
     depends_on:
       - db
@@ -34,14 +32,25 @@ services:
       - POSTGRES_USER=devuser
       - POSTGRES_PASSWORD=changeme
 
-  cron:
+  demons:
     build:
-      context: ./cron
+      context: ./demons
+      args:
+        - DEV=true
     volumes:
-      - ./cron/app:/app
-    command: crond -f -l 2
+      - ./demons/app:/app
+    command: >
+      sh -c "python manage.py wait_for_db &&
+             python manage.py crontab add &&
+             crond -f -l 2"
+    environment:
+      - DB_HOST=db
+      - DB_NAME=devdb
+      - DB_USER=devuser
+      - DB_PASS=changeme
+      - DEBUG=1
     depends_on:
-      - api
+      - db
 
 volumes:
   dev-db-data:

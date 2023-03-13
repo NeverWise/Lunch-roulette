@@ -1,0 +1,6 @@
+[flake8]
+exclude =
+  models.py,
+  __pycache__,
+  manage.py,
+  settings.py
