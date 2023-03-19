@@ -1,6 +1,11 @@
 """
 Tests for lunch APIs.
 """
+import tempfile
+import os
+
+from PIL import Image
+
 from django.contrib.auth import get_user_model
 from django.test import TestCase
 from django.urls import reverse
@@ -10,7 +15,10 @@ from rest_framework.test import APIClient
 
 from core.models import Place
 
-from lunch.serializers import PlaceSerializer
+from lunch.serializers import (
+    PlaceSerializer,
+    PlaceDetailSerializer
+)
 
 
 PLACES_URL = reverse('lunch:place-list')
@@ -21,11 +29,18 @@ def detail_url(place_id):
     return reverse('lunch:place-detail', args=[place_id])
 
 
+def image_upload_url(place_id):
+    """Create and return an image upload URL."""
+    return reverse('lunch:place-upload-image', args=[place_id])
+
+
 def create_place(**params):
     """Create and return a sample place."""
     defaults = {
         'name': 'Good restaurant',
         'address': 'Route 66',
+        'lat': '10.234',
+        'lon': '22.678'
     }
     defaults.update(params)
 
@@ -77,7 +92,7 @@ class PrivatePlaceApiTests(TestCase):
         url = detail_url(place.id)
         res = self.client.get(url)
 
-        serializer = PlaceSerializer(place)
+        serializer = PlaceDetailSerializer(place)
         self.assertEqual(res.data, serializer.data)
 
     def test_create_place(self):
@@ -206,3 +221,43 @@ class PrivatePlaceApiTests(TestCase):
         res = self.client.get(PLACES_URL, params)
 
         self.assertEqual(len(res.data), 1000)
+
+
+class ImageUploadTests(TestCase):
+    """Tests for the image upload API."""
+
+    def setUp(self):
+        self.client = APIClient()
+        self.user = get_user_model().objects.create_user(
+            username='TestName',
+            email='test@example.com',
+            password='testpass123',
+        )
+        self.client.force_authenticate(self.user)
+        self.place = create_place()
+
+    def tearDown(self):
+        self.place.image.delete()
+
+    def test_upload_image(self):
+        """Test uploading an image to a place."""
+        url = image_upload_url(self.place.id)
+        with tempfile.NamedTemporaryFile(suffix='.jpg') as image_file:
+            img = Image.new('RGB', (10, 10))
+            img.save(image_file, format='JPEG')
+            image_file.seek(0)
+            payload = {'image': image_file}
+            res = self.client.post(url, payload, format='multipart')
+
+        self.place.refresh_from_db()
+        self.assertEqual(res.status_code, status.HTTP_200_OK)
+        self.assertIn('image', res.data)
+        self.assertTrue(os.path.exists(self.place.image.path))
+
+    def test_upload_image_bad_request(self):
+        """Test uploading an invalid image."""
+        url = image_upload_url(self.place.id)
+        payload = {'image': 'notanimage'}
+        res = self.client.post(url, payload, format='multipart')
+
+        self.assertEqual(res.status_code, status.HTTP_400_BAD_REQUEST)

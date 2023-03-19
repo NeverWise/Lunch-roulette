@@ -12,6 +12,9 @@ class CorePlace(models.Model):
     id = models.BigAutoField(primary_key=True)
     name = models.CharField(max_length=255)
     address = models.CharField(max_length=255)
+    lat = models.CharField(max_length=100)
+    lon = models.CharField(max_length=100)
+    image = models.CharField(max_length=100, blank=True, null=True)
 
     class Meta:
         managed = False

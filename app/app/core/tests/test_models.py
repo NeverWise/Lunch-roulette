@@ -1,6 +1,7 @@
 """
 Tests for models.
 """
+from unittest.mock import patch
 from django.test import TestCase
 
 from core import models
@@ -16,6 +17,8 @@ class ModelTests(TestCase):
         place = models.Place.objects.create(
             name='Sample resturant name',
             address='Sample receipe description',
+            lat='10.123',
+            lon='22.789',
         )
 
         self.assertEqual(str(place), place.name)
@@ -55,3 +58,12 @@ class ModelTests(TestCase):
         self.assertEqual(str(event), event.name)
         self.assertEqual(str(event.place), place.name)
         self.assertEqual(event.colleagues.count(), 2)
+
+    @patch('core.models.uuid.uuid4')
+    def test_place_file_name_uuid(self, mock_uuid):
+        """Test generating image path."""
+        uuid = 'test-uuid'
+        mock_uuid.return_value = uuid
+        file_path = models.place_image_file_path(None, 'example.jpg')
+
+        self.assertEqual(file_path, f'uploads/place/{uuid}.jpg')

@@ -10,7 +10,9 @@ from drf_spectacular.utils import (
 
 from django.db.models import Q
 
-from rest_framework import viewsets
+from rest_framework import viewsets, status
+from rest_framework.decorators import action
+from rest_framework.response import Response
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 
@@ -43,7 +45,7 @@ from lunch import serializers
 )
 class PlaceViewSet(viewsets.ModelViewSet):
     """View for manage place APIs."""
-    serializer_class = serializers.PlaceSerializer
+    serializer_class = serializers.PlaceDetailSerializer
     queryset = Place.objects.all()
     authentication_classes = [TokenAuthentication]
     permission_classes = [IsAuthenticated]
@@ -72,3 +74,24 @@ class PlaceViewSet(viewsets.ModelViewSet):
             queryset = queryset.order_by('name')[offset:limit]
 
         return queryset
+
+    def get_serializer_class(self):
+        """Return the serializer class for request."""
+        if self.action == 'list':
+            return serializers.PlaceSerializer
+        elif self.action == 'upload_image':
+            return serializers.PlaceImageSerializer
+
+        return self.serializer_class
+
+    @action(methods=['POST'], detail=True, url_path='upload-image')
+    def upload_image(self, request, pk=None):
+        """Upload an image to place."""
+        place = self.get_object()
+        serializer = self.get_serializer(place, data=request.data)
+
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

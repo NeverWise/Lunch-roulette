@@ -129,8 +129,12 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CRONJOBS = [
-    ('* * * * *', 'core.demons.random_event')
+    ('0 15 * * 0', 'core.demons.random_event')
 ]
+if DEBUG:
+    CRONJOBS = [
+        ('* * * * *', 'core.demons.random_event')
+    ]
 
 EMAIL_BACKEND = (
     'django.core.mail.backends.console.EmailBackend'
