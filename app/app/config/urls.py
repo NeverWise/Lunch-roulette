@@ -33,6 +33,7 @@ urlpatterns = [
     ),
     path('api/user/', include('user.urls')),
     path('api/lunch/', include('lunch.urls')),
+    path('', include('www.urls')),
 ]
 
 if settings.DEBUG:

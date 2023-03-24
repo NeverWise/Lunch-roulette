@@ -4,7 +4,6 @@
 
 - https://medium.com/@nutanbhogendrasharma/consume-rest-api-in-django-web-application-130c0daa6f70
 - https://www.geeksforgeeks.org/python-requests-post-request-with-headers-and-body/
-- https://en.wikipedia.org/wiki/ICalendar
 - https://stackoverflow.com/questions/31811074/openstreetmap-get-coordinates-from-address
 
 ## Improvements
