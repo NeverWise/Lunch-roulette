@@ -6,45 +6,155 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 
     <title>Lunch Roulette</title>
   </head>
-  <body>   
-    <div class="vh-100 d-flex justify-content-center align-items-center">
-      <div id="pnl-login" class="card shadow-lg d-none">
-        <div class="card-body p-5">
-          <h2 class="fw-bold text-uppercase">Lunch Roulette</h2>
-          <p>Please enter your login and password!</p>
-          <form id="form-login">
-            <div class="form-floating mb-3">
-              <input type="username" class="form-control" id="l-username" placeholder="username">
-              <label for="l-username">Username</label>
-              <span class="invalid-feedback"></span>
-            </div>
-            <div class="form-floating mb-3">
-              <input type="password" class="form-control" id="l-password" placeholder="password">
-              <label for="l-password">Password</label>
-              <span class="invalid-feedback"></span>
-            </div>
-            <!--p class="small"><a class="text-primary" href="forget-password.html">Forgot password?</a></p-->
-            <button class="btn btn-primary w-100" id="btn-login" type="submit">
-              <span>Login</span>
-              <span class="spinner-border spinner-border-sm d-none" id="spin-login" role="status" aria-hidden="true"></span>
-            </button>
-          </form>
-          <div>
-            <p class="mb-0 text-center">
-              Don't have an account?
-              <a href="" data-bs-toggle="modal" data-bs-target="#sign-up-modal" class="text-primary fw-bold">Sign Up</a>
-            </p>
+  <body>
+    <div id="pnl-place-list" class="d-none">
+      <nav class="navbar navbar-expand fixed-top bg-primary text-white">
+        <div class="container-fluid">
+          <span class="navbar-brand mb-0 h1">Place list</span>
+          <ul class="navbar-nav flex-row">
+            <li>
+              <a class="nav-link py-0 px-2 text-white" href="" data-bs-toggle="tooltip" data-bs-title="Search place" id="btn-search">
+                <i class="h5 bi-search"></i>
+              </a>
+            </li>
+            <li>
+              <a class="nav-link py-0 px-2 text-white" href="" data-bs-toggle="modal" data-bs-target="#place-modal">
+                <i class="h5 bi-plus-lg" data-bs-toggle="tooltip" data-bs-title="Add place"></i>
+              </a>
+            </li>
+            <li class="dropdown">
+              <a class="nav-link py-0 px-2 text-white" href="" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="h5 bi-three-dots-vertical"></i>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li>
+                  <a class="dropdown-item" href="" data-bs-toggle="modal" data-bs-target="#profile-modal">
+                    <i class="h5 me-2 mb-0 align-bottom bi-person"></i>My profile
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="" data-bs-toggle="modal" data-bs-target="#chg-pwd-modal">
+                    <i class="h5 me-2 mb-0 align-bottom bi-key"></i>Change password
+                  </a>
+                </li>
+                <li><hr class="dropdown-divider"></li>
+                <li>
+                  <a class="dropdown-item" href="" id="btn-logout">
+                    <i class="h5 me-2 mb-0 align-bottom bi-box-arrow-right"></i>Log out
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+          <div class="d-flex align-items-center w-100 d-none">
+            <input class="form-control me-2 py-1" type="search" placeholder="Search" aria-label="Search">
+            <a class="text-white" href="" data-bs-toggle="tooltip" data-bs-title="Close search" id="btn-close-search"><i class="h5 bi-x-lg"></i></a>
+          </div>
+        </div>
+      </nav>
+      <div style="margin-top: 50px;" class="d-flex justify-content-evenly flex-wrap">
+        <div class="card mt-3" style="width: 18rem;">
+          <img src="..." class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+          </div>
+        </div>
+        <div class="card mt-3" style="width: 18rem;">
+          <img src="..." class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+          </div>
+        </div>
+        <div class="card mt-3" style="width: 18rem;">
+          <img src="..." class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+          </div>
+        </div>
+        <div class="card mt-3" style="width: 18rem;">
+          <img src="..." class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+          </div>
+        </div>
+        <div class="card mt-3" style="width: 18rem;">
+          <img src="..." class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+          </div>
+        </div>
+        <div class="card mt-3" style="width: 18rem;">
+          <img src="..." class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+          </div>
+        </div>
+        <div class="card mt-3" style="width: 18rem;">
+          <img src="..." class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false"
-         id="sign-up-modal" tabindex="-1" aria-labelledby="sign-up-modalLabel" aria-hidden="true">
+    <div id="pnl-login" class="container-fluid d-none">
+      <div class="row align-items-center justify-content-center vh-100">
+        <div class="col-md-7 col-lg-5 col-xl-3">
+          <div class="card shadow-lg">
+            <div class="card-body p-5">
+              <h2 class="fw-bold text-uppercase">Lunch Roulette</h2>
+              <p>Please enter your login and password!</p>
+              <form id="form-login">
+                <div class="form-floating mb-3">
+                  <input type="username" class="form-control" id="l-username" placeholder="username">
+                  <label for="l-username">Username</label>
+                  <span class="invalid-feedback"></span>
+                </div>
+                <div class="form-floating mb-3">
+                  <input type="password" class="form-control" id="l-password" placeholder="password">
+                  <label for="l-password">Password</label>
+                  <span class="invalid-feedback"></span>
+                </div>
+                <!--p class="small"><a class="text-primary" href="forget-password.html">Forgot password?</a></p-->
+                <button class="btn btn-primary w-100" type="submit">
+                  <span>Login</span>
+                  <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                </button>
+              </form>
+              <div>
+                <p class="mb-0 text-center">
+                  Don't have an account?
+                  <a href="" data-bs-toggle="modal" data-bs-target="#sign-up-modal" class="text-primary fw-bold">Sign Up</a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" data-bs-backdrop="static" id="sign-up-modal"
+         tabindex="-1" aria-labelledby="sign-up-modalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -73,11 +183,10 @@
                 <label for="c-password">Confirm password</label>
                 <span class="invalid-feedback"></span>
               </div>
-              <!--p class="small"><a class="text-primary" href="forget-password.html">Forgot password?</a></p-->
               <div class="d-flex justify-content-end">
-                <button class="btn btn-primary" id="btn-sign-up" type="submit">
+                <button class="btn btn-primary" type="submit">
                   <span>Sign Up</span>
-                  <span class="spinner-border spinner-border-sm d-none" id="spin-sign-up" role="status" aria-hidden="true"></span>
+                  <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
                 </button>
               </div>
             </form>
@@ -86,7 +195,123 @@
       </div>
     </div>
 
-    <div class="position-fixed top-0 end-0 p-3" style="z-index: 1041;">
+    <div class="modal fade" data-bs-backdrop="static" id="chg-pwd-modal"
+         tabindex="-1" aria-labelledby="chg-pwd-modalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="chg-pwd-modalLabel">Change password</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body p-4">
+            <form id="form-chg-pwd" novalidate>
+              <div class="form-floating mb-3">
+                <input type="password" class="form-control" id="o-password" placeholder="old password">
+                <label for="o-password">Old password</label>
+                <span class="invalid-feedback"></span>
+              </div>
+              <div class="form-floating mb-3">
+                <input type="password" class="form-control" id="n-password" placeholder="password">
+                <label for="n-password">New password</label>
+                <span class="invalid-feedback"></span>
+              </div>
+              <div class="form-floating mb-3">
+                <input type="password" class="form-control" id="cn-password" placeholder="confirm password">
+                <label for="cn-password">Confirm new password</label>
+                <span class="invalid-feedback"></span>
+              </div>
+              <div class="d-flex justify-content-end">
+                <button class="btn btn-primary" type="submit">
+                  <span>Change password</span>
+                  <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" data-bs-backdrop="static" id="profile-modal"
+         tabindex="-1" aria-labelledby="profile-modalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="profile-modalLabel">My profile</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body p-4">
+            <form id="form-profile" novalidate>
+              <div class="form-floating mb-3">
+                <input type="username" class="form-control" id="p-username" placeholder="username">
+                <label for="p-username">Username</label>
+                <span class="invalid-feedback"></span>
+              </div>
+              <div class="form-floating mb-3">
+                <input type="email" class="form-control" id="p-email" placeholder="email">
+                <label for="p-email">Email</label>
+                <span class="invalid-feedback"></span>
+              </div>
+              <div class="d-flex justify-content-end">
+                <button class="btn btn-primary" type="submit">
+                  <span>Confirm changes</span>
+                  <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" data-bs-backdrop="static" id="place-modal"
+         tabindex="-1" aria-labelledby="place-modalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="place-modalLabel">Add new place</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body p-4">
+            <form id="form-place" novalidate>
+              <div class="form-floating mb-3">
+                <input type="username" class="form-control" id="r-username" placeholder="username">
+                <label for="r-username">Name</label>
+                <span class="invalid-feedback"></span>
+              </div>
+              <div class="form-floating mb-3">
+                <input type="email" class="form-control" id="r-email" placeholder="email">
+                <label for="r-email">Address</label>
+                <span class="invalid-feedback"></span>
+              </div>
+              <div class="form-floating mb-3">
+                <input type="password" class="form-control" id="r-password" placeholder="password">
+                <label for="r-password">Latitude</label>
+                <span class="invalid-feedback"></span>
+              </div>
+              <div class="form-floating mb-3">
+                <input type="password" class="form-control" id="c-password" placeholder="confirm password">
+                <label for="c-password">Longitude</label>
+                <span class="invalid-feedback"></span>
+              </div>
+              <div class="form-floating mb-3">
+                <input type="password" class="form-control" id="c-password" placeholder="confirm password">
+                <label for="c-password">Image</label>
+                <span class="invalid-feedback"></span>
+              </div>
+              <div class="d-flex justify-content-end">
+                <button class="btn btn-primary" type="submit">
+                  <span>Save place</span>
+                  <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="position-fixed top-0 start-50 translate-middle-x p-3" style="z-index: 1060;">
       <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
         <div class="d-flex">
           <div class="toast-body"></div>
@@ -101,7 +326,7 @@
 
       // Toast logic.
 
-      const toast_container = document.querySelector('div.position-fixed.top-0.end-0.p-3');
+      const toast_container = document.querySelector('div.position-fixed.top-0.start-50.translate-middle-x.p-3');
       const toast_el = document.querySelector('div.toast');
       toast_el.parentNode.removeChild(toast_el);
 
@@ -122,9 +347,57 @@
       };
 
 
+      // Init tooltip.
+
+      document.querySelectorAll('[data-bs-toggle="tooltip"]')
+        .forEach(tooltip => {
+          new bootstrap.Tooltip(tooltip)
+        });
+
+
+      // Page logic.
+
+      const toggle_pnl_login = force => {
+        const pnl_login = document.getElementById('pnl-login')
+        const result = pnl_login.classList.toggle('d-none', force);
+        if (!result) {
+          let ctrl_focus = pnl_login.querySelector('[placeholder="username"]');
+          ctrl_focus = ctrl_focus.value ? pnl_login.querySelector('[placeholder="password"]') : ctrl_focus;
+          ctrl_focus.focus();
+        }
+      };
+
+      const toggle_pnl_place_list = force => {
+        document.getElementById('pnl-place-list').classList.toggle('d-none', force);
+      };
+
+      const toggle_btn = (el, force) => {
+        el.querySelectorAll('button')
+          .forEach(btn => {
+            btn.disabled = force == null ? !btn.disabled : !force;
+            if (btn.type === 'submit') {
+              btn.firstElementChild.classList.toggle('d-none', force == null ? undefined : !force);
+              btn.querySelector('.spinner-border').classList.toggle('d-none', force);
+            }
+          });
+      };
+
+      const toggle_field_error = (el, field, force) => {
+        el = el.querySelector(`[placeholder="${field}"]`);
+        el.classList.toggle('is-invalid', force);
+        return el;
+      };
+
+      const toggle_field_error_msg = (el, field, msg) => {
+        el = toggle_field_error(el, field, !!msg);
+        el.parentElement.lastElementChild.innerText = msg ?? '';
+        return el;
+      };
+
+
       // Fetch apis.
 
-      const fetch_api = (route, method, body) => {
+      const fetch_api = (route, el_btns, method, body) => {
         let headers = {
           'Content-Type': 'application/json'
         };
@@ -137,150 +410,254 @@
         };
         if (body) options.body = JSON.stringify(body);
 
+        if (el_btns) toggle_btn(el_btns, false);
         return fetch(`${window.location.href}${route}`, options)
           .then(res => {
             let json = res.json();
+            if (el_btns) toggle_btn(el_btns, true);
             return res.ok ? json :
               json.then(error => { throw error; });
           });
       };
 
 
-      // Page logic.
+      // Init modals.
 
-      const toggle_pnl_login = (force) => {
-        const pnl_login = document.getElementById('pnl-login')
-        const result = pnl_login.classList.toggle('d-none', force);
-        if (!result) {
-          let ctrl_focus = pnl_login.querySelector('[placeholder="username"]');
-          ctrl_focus = ctrl_focus.value ? pnl_login.querySelector('[placeholder="password"]') : ctrl_focus;
-          ctrl_focus.focus();
+      document.querySelectorAll('div.modal')
+        .forEach(modal => {
+          const form = modal.querySelector('form');
+          modal.addEventListener('shown.bs.modal', event => {
+            form.querySelector('input:first-child').focus();
+          });
+          modal.addEventListener('hidden.bs.modal', event => {
+            form.reset();
+            form.querySelectorAll('input')
+              .forEach(input => {
+                toggle_field_error_msg(form, input.placeholder);
+              });
+          });
+        });
+
+
+      // Registration modal.
+
+      const sign_up_modal = document.getElementById('sign-up-modal');
+      const form_sign_up = document.getElementById('form-sign-up');
+      form_sign_up.addEventListener('submit', event => {
+        const el_user = toggle_field_error_msg(form_sign_up, 'username');
+        const el_mail = toggle_field_error_msg(form_sign_up, 'email');
+        const el_pwd = toggle_field_error_msg(form_sign_up, 'password');
+        const el_conf_pwd = toggle_field_error_msg(form_sign_up, 'confirm password');
+        event.preventDefault();
+
+        if (el_pwd.value === el_conf_pwd.value) {
+          const payload = {
+            username: el_user.value,
+            password: el_pwd.value,
+            email: el_mail.value
+          };
+          fetch_api('api/user/create/', sign_up_modal, 'POST', payload)
+            .then(data => {
+              show_toast('Registration completed successfully.', 'bg-success');
+              const modal = bootstrap.Modal.getInstance(sign_up_modal);
+              modal.hide();
+            })
+            .catch(error => {
+              for (const prop in error) {
+                if (prop === 'non_field_errors') {
+                  toggle_field_error(form_sign_up, 'username', true);
+                  toggle_field_error(form_sign_up, 'password', true);
+                  toggle_field_error(form_sign_up, 'email', true);
+                  toggle_field_error(form_sign_up, 'confirm password', true);
+                  show_toast(error[prop], 'bg-danger');
+                }
+                else toggle_field_error_msg(form_sign_up, prop, error[prop]);
+              }
+            });
         }
+        else toggle_field_error_msg(form_sign_up, 'confirm password', 'The field confirm password don\'t match the field password.');
+      });
+
+
+      // Change password.
+
+      const chg_pwd_modal = document.getElementById('chg-pwd-modal');
+      const form_chg_pwd = document.getElementById('form-chg-pwd');
+      form_chg_pwd.addEventListener('submit', event => {
+        const el_old_pwd = toggle_field_error_msg(form_chg_pwd, 'old password');
+        const el_pwd = toggle_field_error_msg(form_chg_pwd, 'password');
+        const el_conf_pwd = toggle_field_error_msg(form_chg_pwd, 'confirm password');
+        event.preventDefault();
+
+        if (el_pwd.value && el_pwd.value === el_conf_pwd.value) {
+          let payload = {
+            username: sessionStorage.getItem('username'),
+            password: el_old_pwd.value
+          };
+          fetch_api('api/user/token/', chg_pwd_modal, 'POST', payload)
+            .then(data => {
+              payload = {
+                password: el_pwd.value
+              };
+              fetch_api('api/user/me/', chg_pwd_modal, 'PATCH', payload)
+                .then(data => {
+                  show_toast('Password changed successfully.', 'bg-success');
+                  const modal = bootstrap.Modal.getInstance(chg_pwd_modal);
+                  modal.hide();
+                })
+                .catch(error => {
+                  for (const prop in error) {
+                    if (prop === 'non_field_errors') {
+                      toggle_field_error(form_chg_pwd, 'old password', true);
+                      toggle_field_error(form_chg_pwd, 'password', true);
+                      toggle_field_error(form_chg_pwd, 'confirm password', true);
+                      show_toast(error[prop], 'bg-danger');
+                    }
+                    else toggle_field_error_msg(form_chg_pwd, prop, error[prop]);
+                  }
+                });
+            })
+            .catch(error => {
+              toggle_field_error_msg(form_chg_pwd, 'old password', 'Old password is wrong.');
+            });
+        }
+        else if (!el_pwd.value) {
+          toggle_field_error(form_chg_pwd, 'password', true);
+          toggle_field_error(form_chg_pwd, 'confirm password', true);
+          show_toast('New password and confirm new password can not be empty.', 'bg-danger');
+        }
+        else toggle_field_error_msg(form_chg_pwd, 'confirm password', 'The field confirm new password don\'t match the field new password.');
+      });
+
+
+      // Edit profile.
+      const profile_modal = document.getElementById('profile-modal');
+      const form_profile = document.getElementById('form-profile');
+      profile_modal.addEventListener('show.bs.modal', event => {
+        fetch_api('api/user/me/', profile_modal)
+          .then(data => {
+            form_profile.querySelector('[placeholder="username"]').value = data.username;
+            form_profile.querySelector('[placeholder="email"]').value = data.email;
+          })
+          .catch(error => {
+            show_toast(JSON.stringify(error), 'bg-danger');
+          });
+      });
+
+      form_profile.addEventListener('submit', event => {
+        const el_user = toggle_field_error_msg(form_profile, 'username');
+        const el_mail = toggle_field_error_msg(form_profile, 'email');
+        event.preventDefault();
+
+        const payload = {
+          username: el_user.value,
+          email: el_mail.value
+        };
+        fetch_api('api/user/me/', profile_modal, 'PATCH', payload)
+          .then(data => {
+            sessionStorage.setItem('username', payload.username);
+            show_toast('Profile information saved successfully.', 'bg-success');
+            const modal = bootstrap.Modal.getInstance(profile_modal);
+            modal.hide();
+          })
+          .catch(error => {
+            for (const prop in error) {
+              if (prop === 'non_field_errors') {
+                toggle_field_error(form_profile, 'username', true);
+                toggle_field_error(form_profile, 'email', true);
+                show_toast(error[prop], 'bg-danger');
+              }
+              else toggle_field_error_msg(form_profile, prop, error[prop]);
+            }
+          });
+      });
+
+      // Search bar.
+
+      const toggle_search_bar = force => {
+        const el = document.querySelector('nav .container-fluid');
+        for (const child of el.children) {
+          child.classList.toggle('d-none', force);
+        }
+        el.lastElementChild.classList.toggle('d-none', force == null ? undefined : !force);
       };
+
+      const input_search = document.querySelector('[type="search"]');
+
+      document.getElementById('btn-search').addEventListener('click', event => {
+        event.preventDefault();
+        toggle_search_bar(true);
+        input_search.focus();
+      });
+
+      const close_search_bar = () => {
+        toggle_search_bar(false);
+        input_search.value = '';
+      };
+
+      document.getElementById('btn-close-search').addEventListener('click', event => {
+        event.preventDefault();
+        close_search_bar();
+      });
+
+      input_search.addEventListener("keydown", event => {
+        if (event.key === 'Escape') close_search_bar();
+      });
 
 
       // Init page.
 
       const init_page = () => {
         if (sessionStorage.getItem('token')) {
-          console.log('place list');
+          toggle_pnl_place_list(false);
           toggle_pnl_login(true);
         }
-        else { // Show and init log in and sign up modal.
-
-          const toggle_field_error = (el, field, force) => {
-            el = el.querySelector(`[placeholder="${field}"]`);
-            el.classList.toggle('is-invalid', force);
-            return el;
-          };
-
-          const toggle_field_error_msg = (el, field, msg) => {
-            el = toggle_field_error(el, field, !!msg);
-            el.parentElement.lastElementChild.innerText = msg ?? '';
-            return el;
-          };
-
-          // Init log in.
-
-          const toggle_btn_login = () => {
-            const btn_login = document.getElementById('btn-login');
-            btn_login.disabled = !btn_login.disabled;
-            btn_login.firstElementChild.classList.toggle('d-none');
-            btn_login.querySelector('.spinner-border').classList.toggle('d-none'); 
-          };
-
-          toggle_pnl_login();
-
-          const form_login = document.getElementById('form-login');
-          form_login.addEventListener('submit', event => {
-            toggle_btn_login();
-            toggle_field_error_msg(form_login, 'username');
-            toggle_field_error_msg(form_login, 'password');
-            event.preventDefault();
-
-            const payload = {
-              username: form_login.querySelector('[placeholder="username"]').value,
-              password: form_login.querySelector('[placeholder="password"]').value
-            }
-            fetch_api('api/user/token/', 'POST', payload)
-            .then(data => {
-              sessionStorage.setItem('token', data.token);
-              init_page();
-            })
-            .catch(error => {
-              toggle_btn_login();
-              for (const prop in error) {
-                if (prop == 'non_field_errors') {
-                  toggle_field_error(form_login, 'username', true);
-                  toggle_field_error(form_login, 'password', true);
-                  show_toast(error[prop], 'bg-danger');
-                }
-                else toggle_field_error_msg(form_login, prop, error[prop]);
-              }
-            });
-          });
-
-          // Registration modal.
-
-          const sign_up_modal = document.getElementById('sign-up-modal');
-
-          const toggle_btn_sign_up = (active) => {
-            const btn_sign_up = document.getElementById('btn-sign-up');
-            btn_sign_up.disabled = active == null ? !btn_sign_up.disabled : !active;
-            btn_sign_up.firstElementChild.classList.toggle('d-none', active == null ? undefined : !active);
-            btn_sign_up.querySelector('.spinner-border').classList.toggle('d-none', active);
-            sign_up_modal.querySelector('.btn-close').classList.toggle('d-none', active == null ? undefined : !active);
-          };
-
-          sign_up_modal.addEventListener('shown.bs.modal', () => {
-            toggle_btn_sign_up(true);
-            sign_up_modal.querySelector('[placeholder="username"]').focus();
-          });
-
-          const form_sign_up = document.getElementById('form-sign-up');
-          sign_up_modal.addEventListener('hidden.bs.modal', () => {
-            form_sign_up.reset();
-          });
-
-          form_sign_up.addEventListener('submit', event => {
-            toggle_field_error_msg(form_sign_up, 'username');
-            toggle_field_error_msg(form_sign_up, 'email');
-            const el_pwd = toggle_field_error_msg(form_sign_up, 'password');
-            const el_conf_pwd = toggle_field_error_msg(form_sign_up, 'confirm password');
-            event.preventDefault();
-
-            if (el_pwd.value === el_conf_pwd.value)
-            {
-              toggle_btn_sign_up();
-              const payload = {
-                username: form_sign_up.querySelector('[placeholder="username"]').value,
-                password: form_sign_up.querySelector('[placeholder="password"]').value,
-                email: form_sign_up.querySelector('[placeholder="email"]').value
-              }
-              fetch_api('api/user/create/', 'POST', payload)
-              .then(data => {
-                const modal = bootstrap.Modal.getInstance(sign_up_modal);
-                modal.hide();
-                show_toast('Registration completed successfully.', 'bg-success');
-              })
-              .catch(error => {
-                toggle_btn_sign_up();
-                for (const prop in error) {
-                  if (prop == 'non_field_errors') {
-                    toggle_field_error(form_sign_up, 'username', true);
-                    toggle_field_error(form_sign_up, 'password', true);
-                    toggle_field_error(form_sign_up, 'email', true);
-                    toggle_field_error(form_sign_up, 'confirm password', true);
-                    show_toast(error[prop], 'bg-danger');
-                  }
-                  else toggle_field_error_msg(form_sign_up, prop, error[prop]);
-                }
-              });
-            }
-            else toggle_field_error_msg(form_sign_up, 'confirm password', 'The field confirm password don\'t match the field password.');
-          });
+        else {
+          toggle_pnl_login(false);
+          toggle_pnl_place_list(true);
         }
       };
+
+
+      // Log out.
+
+      document.getElementById('btn-logout').addEventListener('click', event => {
+        event.preventDefault();
+        sessionStorage.clear();
+        init_page();
+      });
+
+
+      // Log in.
+
+      const form_login = document.getElementById('form-login');
+      form_login.addEventListener('submit', event => {
+        const el_user = toggle_field_error_msg(form_login, 'username');
+        const el_pwd = toggle_field_error_msg(form_login, 'password');
+        event.preventDefault();
+
+        const payload = {
+          username: el_user.value,
+          password: el_pwd.value
+        };
+        fetch_api('api/user/token/', form_login, 'POST', payload)
+          .then(data => {
+            sessionStorage.setItem('token', data.token);
+            sessionStorage.setItem('username', payload.username);
+            el_pwd.value = '';
+            init_page();
+          })
+          .catch(error => {
+            for (const prop in error) {
+              if (prop === 'non_field_errors') {
+                toggle_field_error(form_login, 'username', true);
+                toggle_field_error(form_login, 'password', true);
+                show_toast(error[prop], 'bg-danger');
+              }
+              else toggle_field_error_msg(form_login, prop, error[prop]);
+            }
+          });
+      });
 
       init_page();
 
