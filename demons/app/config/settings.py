@@ -133,7 +133,7 @@ CRONJOBS = [
 ]
 if DEBUG:
     CRONJOBS = [
-        ('* * * * *', 'core.demons.random_event')
+        ('*/15 * * * *', 'core.demons.random_event')
     ]
 
 EMAIL_BACKEND = (
