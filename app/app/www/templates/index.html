@@ -34,13 +34,13 @@
           <span class="navbar-brand mb-0 h1">Place list</span>
           <ul class="navbar-nav flex-row">
             <li>
-              <a class="nav-link py-0 px-2 text-white" href="" data-bs-toggle="tooltip" data-bs-title="Search place" id="btn-search">
+              <a class="nav-link py-0 px-2 text-white" href="" data-lr-role="tooltip" data-bs-title="Search place" id="btn-search">
                 <i class="h5 bi-search"></i>
               </a>
             </li>
             <li>
-              <a class="nav-link py-0 px-2 text-white" href="" data-bs-toggle="modal" data-bs-target="#place-modal">
-                <i class="h5 bi-plus-lg" data-bs-toggle="tooltip" data-bs-title="Add place"></i>
+              <a class="nav-link py-0 px-2 text-white" href="" data-lr-role="tooltip" data-bs-title="Add place" data-bs-toggle="modal" data-bs-target="#place-modal">
+                <i class="h5 bi-plus-lg"></i>
               </a>
             </li>
             <li class="dropdown">
@@ -69,66 +69,42 @@
           </ul>
           <div class="d-flex align-items-center w-100 d-none">
             <input class="form-control me-2 py-1" type="search" placeholder="Search" aria-label="Search">
-            <a class="text-white" href="" data-bs-toggle="tooltip" data-bs-title="Close search" id="btn-close-search"><i class="h5 bi-x-lg"></i></a>
+            <a class="text-white" href="" data-lr-role="tooltip" data-bs-title="Close search" id="btn-close-search"><i class="h5 bi-x-lg"></i></a>
           </div>
         </div>
       </nav>
       <div style="margin-top: 50px;" class="d-flex justify-content-evenly flex-wrap">
         <div class="card shadow mt-3" style="width: 18rem;">
-          <img src="..." class="card-img-top" alt="...">
+          <img class="card-img-top">
+          <i class="bi-image-alt text-center mt-4" style="font-size: 100px;"></i>
           <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
+            <h5 class="card-title"></h5>
+            <p class="card-text adrs"></p>
+            <p class="card-text pos"><i class="bi-geo-alt"></i></p>
+          </div>
+          <div class="text-end mb-3 me-3">
+            <a class="btn btn-primary" href="" data-lr-role="tooltip" data-bs-title="Edit place" data-bs-toggle="modal" data-bs-target="#place-modal">
+              <i class="bi-pencil"></i>
+            </a>
+            <a class="btn btn-danger" href="" data-lr-role="tooltip" data-bs-title="Delete place" data-bs-toggle="modal" data-bs-target="#delete-place-modal">
+              <i class="bi-trash"></i>
+            </a>
           </div>
         </div>
-        <div class="card shadow mt-3" style="width: 18rem;">
-          <img src="..." class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-          </div>
+        <div id="no-places" class="d-flex flex-column align-items-center d-none">
+          <i class="bi-shop mt-5 display-1"></i>
+          <p>No places. Start by adding a <a href="" data-bs-toggle="modal" data-bs-target="#place-modal">new place</a>.</p>
         </div>
-        <div class="card shadow mt-3" style="width: 18rem;">
-          <img src="..." class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-          </div>
+        <div id="no-places-found" class="d-flex flex-column align-items-center d-none">
+          <i class="bi-search mt-5 display-1"></i>
+          <p>No places found.</p>
         </div>
-        <div class="card shadow mt-3" style="width: 18rem;">
-          <img src="..." class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-          </div>
+        <div id="error-places" class="d-flex flex-column align-items-center d-none">
+          <i class="bi-emoji-frown mt-5 display-1"></i>
+          <p>Something went wrong.</p>
         </div>
-        <div class="card shadow mt-3" style="width: 18rem;">
-          <img src="..." class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-          </div>
-        </div>
-        <div class="card shadow mt-3" style="width: 18rem;">
-          <img src="..." class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-          </div>
-        </div>
-        <div class="card shadow mt-3" style="width: 18rem;">
-          <img src="..." class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-          </div>
+        <div id="spinner-places" class="d-flex flex-column align-items-center pt-5 d-none">
+          <div class="spinner-border text-primary mt-5" style="width: 5rem; height: 5rem;"></div>
         </div>
       </div>
     </div>
@@ -285,39 +261,62 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="place-modalLabel">Add new place</h5>
+            <h5 class="modal-title" id="place-modalLabel"></h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body p-4">
             <form id="form-place" novalidate>
               <div class="mb-3">
-                <label for="place-name" class="form-label">Name</label>
+                <label class="form-label" for="place-name">Name</label>
                 <select id="place-name" data-lr-field="name"></select>
                 <span class="invalid-feedback"></span>
               </div>
               <div class="mb-3">
-                <label for="place-address" class="form-label">Address</label>
+                <label class="form-label" for="place-address">Address</label>
                 <select id="place-address" data-lr-field="address"></select>
                 <span class="invalid-feedback"></span>
               </div>
               <div class="mb-3">
-                <label for="place-lat" class="form-label">Latitude</label>
-                <input type="text" class="form-control" id="place-lat" placeholder="55.7037103" data-lr-field="lat">
+                <label class="form-label" for="place-lat">Latitude</label>
+                <input class="form-control" id="place-lat" type="text" placeholder="55.7037103" data-lr-field="lat">
                 <span class="invalid-feedback"></span>
               </div>
               <div class="mb-3">
-                <label for="place-lon" class="form-label">Longitude</label>
-                <input type="text" class="form-control" id="place-lon" placeholder="12.5720401" data-lr-field="lon">
+                <label class="form-label" for="place-lon">Longitude</label>
+                <input class="form-control" id="place-lon" type="text" placeholder="12.5720401" data-lr-field="lon">
                 <span class="invalid-feedback"></span>
               </div>
               <div class="mb-3">
-                <label for="place-image" class="form-label">Image</label>
-                <input class="form-control" type="file" id="place-image" accept=".jpg, .jpeg, .png" data-lr-field="image">
+                <label class="form-label" for="place-image">Image</label>
+                <input class="form-control" id="place-image" type="file" accept=".jpg, .jpeg, .png" data-lr-field="image">
                 <span class="invalid-feedback"></span>
               </div>
               <div class="d-flex justify-content-end">
                 <button class="btn btn-primary" type="submit">
                   <span>Save place</span>
+                  <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" data-bs-backdrop="static" id="delete-place-modal"
+         tabindex="-1" aria-labelledby="delete-place-modalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="delete-place-modalLabel">Delete place</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body p-4">
+            <form id="form-delete-place" novalidate>
+              <p></p>
+              <div class="d-flex justify-content-end">
+                <button class="btn btn-danger" type="submit">
+                  <span>Delete place</span>
                   <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
                 </button>
               </div>
@@ -345,8 +344,8 @@
       // Toast logic.
 
       const toast_container = document.querySelector('div.position-fixed.top-0.start-50.translate-middle-x.p-3');
-      const toast_el = document.querySelector('div.toast');
-      toast_el.parentNode.removeChild(toast_el);
+      const toast_el = toast_container.firstElementChild;
+      toast_container.removeChild(toast_el);
 
       const show_toast = (msg, bg_class) => {
         const new_toast_el = toast_el.cloneNode(true);
@@ -365,15 +364,7 @@
       };
 
 
-      // Init tooltip.
-
-      document.querySelectorAll('[data-bs-toggle="tooltip"]')
-        .forEach(tooltip => {
-          new bootstrap.Tooltip(tooltip)
-        });
-
-
-      // Page logic.
+      // Page functions.
 
       const toggle_pnl_login = force => {
         const pnl_login = document.getElementById('pnl-login')
@@ -415,8 +406,14 @@
 
       // Fetch apis.
 
-      const fetch_api = (route, el_btns, method, body) => {
+      const process_api_res = res => {
+        const contentType = res.headers.get("content-type");
+        let json = contentType ? res.json() : res;
+        return res.ok ? json :
+          json.then(error => { throw error; });
+      };
 
+      const fetch_api = (route, method, body) => {
         let headers = {};
         const isBodyFormData = body && body instanceof FormData;
         if (!isBodyFormData) headers['Content-Type'] = 'application/json';
@@ -431,15 +428,115 @@
         };
         if (body) options.body = isBodyFormData ? body : JSON.stringify(body);
 
-        if (el_btns) toggle_btn(el_btns, false);
-        return fetch(`${window.location.href}${route}`, options)
+        return fetch(`${window.location.href}${route}`, options);
+      };
+
+      const fetch_api_spinner = (route, close_spinner_f) =>
+        fetch_api(route, 'GET', null)
           .then(res => {
-            let json = res.json();
+            close_spinner_f();
+            return process_api_res(res);
+          });
+
+      const fetch_api_form = (route, el_btns, method, body) => {
+        if (el_btns) toggle_btn(el_btns, false);
+        return fetch_api(route, method, body)
+          .then(res => {
             if (el_btns) toggle_btn(el_btns, true);
-            return res.ok ? json :
-              json.then(error => { throw error; });
+            return process_api_res(res);
           });
       };
+
+
+      // Places logic.
+
+      const place_container = document.querySelector('div.d-flex.justify-content-evenly.flex-wrap');
+      const place_el = place_container.firstElementChild;
+      place_container.removeChild(place_el);
+
+      const input_search = document.querySelector('[type="search"]');
+
+      const load_places = () => {
+        place_container.querySelectorAll('div.card').forEach(card => {
+          card.querySelectorAll('a').forEach(anchor => {
+            const tooltip = bootstrap.Tooltip.getInstance(anchor);
+            tooltip.dispose();
+          });
+          card.parentElement.removeChild(card);
+        });
+        document.getElementById('no-places').classList.add('d-none');
+        document.getElementById('no-places-found').classList.add('d-none');
+        document.getElementById('error-places').classList.add('d-none');
+        document.getElementById('spinner-places').classList.remove('d-none');
+
+        const search = input_search.value ? `?search=${input_search.value}` : '';
+
+        fetch_api_spinner(
+          `api/lunch/places${search}`,
+          () => { document.getElementById('spinner-places').classList.add('d-none'); }
+        )
+        .then(data => {
+          if (data.length > 0) {
+            const dFrag = document.createDocumentFragment();
+            data.forEach(place => {
+              const new_place_el = place_el.cloneNode(true);
+
+              new_place_el.querySelector('.card-title').innerText = place.name;
+
+              const card_body = new_place_el.querySelector('.card-body');
+
+              const adrs = new_place_el.querySelector('.adrs');
+              if (place.address) {
+                adrs.innerText = place.address;
+              }
+              else card_body.removeChild(adrs);
+
+              const pos = new_place_el.querySelector('.pos');
+              if (place.lat || place.lon) {
+                const lat = place.lat ? ` ${place.lat}` : '';
+                const lon = place.lon ? ` ${place.lon}` : '';
+                pos.appendChild(document.createTextNode(`${lat}${lon}`));
+              }
+              else card_body.removeChild(pos);
+
+              if (place.image) {
+                new_place_el.removeChild(new_place_el.querySelector('i'));
+                const img = new_place_el.querySelector('img');
+                img.src = place.image;
+                img.alt = `${place.name} image`;
+              }
+              else new_place_el.removeChild(new_place_el.querySelector('img'));
+
+              new_place_el.querySelectorAll('a').forEach(anchor => {
+                anchor.setAttribute('data-lr-place-id', place.id);
+              });
+
+              dFrag.appendChild(new_place_el);
+            });
+            place_container.appendChild(dFrag);
+            init_tooltips(place_container);
+          }
+          else {
+            const mes_id = search ? 'no-places-found' : 'no-places';
+            document.getElementById(mes_id).classList.remove('d-none');
+          }
+        })
+        .catch(error => {
+          document.getElementById('error-places').classList.remove('d-none');
+        });
+      };
+
+
+      // Init tooltip.
+
+      const init_tooltips = el => {
+        el = el ? el : document;
+        el.querySelectorAll('[data-lr-role="tooltip"]')
+          .forEach(tooltip => {
+            new bootstrap.Tooltip(tooltip)
+          });
+      };
+      init_tooltips();
 
 
       // Init modals.
@@ -490,7 +587,7 @@
             password: el_pwd.value,
             email: el_mail.value
           };
-          fetch_api('api/user/create/', sign_up_modal, 'POST', payload)
+          fetch_api_form('api/user/create/', sign_up_modal, 'POST', payload)
             .then(data => {
               show_toast('Registration completed successfully.', 'bg-success');
               const modal = bootstrap.Modal.getInstance(sign_up_modal);
@@ -528,12 +625,12 @@
             username: sessionStorage.getItem('username'),
             password: el_old_pwd.value
           };
-          fetch_api('api/user/token/', chg_pwd_modal, 'POST', payload)
+          fetch_api_form('api/user/token/', chg_pwd_modal, 'POST', payload)
             .then(data => {
               payload = {
                 password: el_pwd.value
               };
-              fetch_api('api/user/me/', chg_pwd_modal, 'PATCH', payload)
+              fetch_api_form('api/user/me/', chg_pwd_modal, 'PATCH', payload)
                 .then(data => {
                   show_toast('Password changed successfully.', 'bg-success');
                   const modal = bootstrap.Modal.getInstance(chg_pwd_modal);
@@ -569,7 +666,7 @@
       const profile_modal = document.getElementById('profile-modal');
       const form_profile = document.getElementById('form-profile');
       profile_modal.addEventListener('show.bs.modal', event => {
-        fetch_api('api/user/me/', profile_modal)
+        fetch_api_form('api/user/me/', profile_modal)
           .then(data => {
             form_profile.querySelector('[data-lr-field="username"]').value = data.username;
             form_profile.querySelector('[data-lr-field="email"]').value = data.email;
@@ -588,7 +685,7 @@
           username: el_user.value,
           email: el_mail.value
         };
-        fetch_api('api/user/me/', profile_modal, 'PATCH', payload)
+        fetch_api_form('api/user/me/', profile_modal, 'PATCH', payload)
           .then(data => {
             sessionStorage.setItem('username', payload.username);
             show_toast('Profile information saved successfully.', 'bg-success');
@@ -651,6 +748,19 @@
         };
       }
 
+      const set_select2 = (selector, value) => {
+        const jselect = $(selector);
+        jselect.data('select2').results.clear();
+        jselect.val(null).trigger('change');
+        const newOption = new Option(value, value, false, true);
+        jselect.append(newOption).trigger('change');
+      };
+
+      const set_lat_lon = (lat, lon) => {
+        form_place.querySelector('[data-lr-field="lat"]').value = lat;
+        form_place.querySelector('[data-lr-field="lon"]').value = lon;
+      };
+
       $('#place-name').select2({
         ...select2_opt,
         ajax: {
@@ -684,19 +794,13 @@
         },
         templateSelection: place => {
           if (place.name) {
-            const jselect = $('#place-address');
-            jselect.data('select2').results.clear();
-            jselect.val(null).trigger('change');
-            const newOption = new Option(place.address, place.address, false, true);
-            jselect.append(newOption).trigger('change');
-            document.getElementById('place-lat').value = place.lat;
-            document.getElementById('place-lon').value = place.lon;
+            set_select2('#place-address', place.address);
+            set_lat_lon(place.lat, place.lon);
             return place.name;
           }
           return place.text;
         }
       });
-
 
       $('#place-address').select2({
         ...select2_opt,
@@ -717,8 +821,7 @@
         },
         templateSelection: place => {
           if (place.address) {
-            document.getElementById('place-lat').value = place.lat;
-            document.getElementById('place-lon').value = place.lon;
+            set_lat_lon(place.lat, place.lon);
             return place.address;
           }
           return place.text;
@@ -739,7 +842,27 @@
         show_toast('Place saved successfully.', 'bg-success');
         const modal = bootstrap.Modal.getInstance(place_modal);
         modal.hide();
+        load_places();
       };
+
+      let selected_place_id;
+      place_modal.addEventListener('show.bs.modal', event => {
+        const place_title = place_modal.querySelector('.modal-title');
+        selected_place_id = $(event.relatedTarget).data('lr-place-id');
+        if (selected_place_id) {
+          fetch_api_form(`api/lunch/places/${selected_place_id}`, place_modal)
+            .then(data => {
+              set_select2('#place-name', data.name);
+              if (data.address) set_select2('#place-address', data.address);
+              set_lat_lon(data.lat, data.lon);
+            })
+            .catch(error => {
+              show_toast(JSON.stringify(error), 'bg-danger');
+            });
+          place_title.innerText = 'Edit place';
+        }
+        else place_title.innerText = 'Add new place';
+      });
 
       form_place.addEventListener('submit', event => {
         toggle_field_error_msg(form_place, 'name');
@@ -752,24 +875,31 @@
         const p_name = $('#place-name').select2('data');
         const p_address = $('#place-address').select2('data');
         const payload = {
-          'name': p_name.length > 0 ? p_name[0].name || p_name[0].text : '',
-          'address': p_address.length > 0 ? [0].address || p_address[0].text : '',
-          'image': null,
-          'lat': document.getElementById('place-lat').value,
-          'lon': document.getElementById('place-lon').value
+          name: p_name.length > 0 ? p_name[0].name || p_name[0].text : '',
+          address: p_address.length > 0 ? p_address[0].address || p_address[0].text : '',
+          lat: document.getElementById('place-lat').value,
+          lon: document.getElementById('place-lon').value
         };
-        fetch_api('api/lunch/places/', place_modal, 'POST', payload)
+
+        let str_id = `${selected_place_id}/`;
+        let method = 'PATCH';
+        if (!selected_place_id) {
+          str_id = '';
+          method = 'POST';
+          payload.image = null;
+        }
+
+        fetch_api_form(`api/lunch/places/${str_id}`, place_modal, method, payload)
           .then(data => {
             const files = document.getElementById('place-image').files;
             if (files.length > 0) {
               const formData = new FormData();
               formData.append('image', files[0]);
-              fetch_api(`api/lunch/places/${data.id}/upload-image/`, place_modal, 'POST', formData)
+              fetch_api_form(`api/lunch/places/${data.id}/upload-image/`, place_modal, 'POST', formData)
                 .then(data => {
                   success_place_toast();
                 })
                 .catch(error => {
-                  console.log(error);
                   for (const prop in error) {
                     if (prop === 'non_field_errors') {
                       toggle_field_error(form_place, 'image', true);
@@ -796,6 +926,43 @@
       });
 
 
+      // Delete place modal.
+
+      const delete_place_modal = document.getElementById('delete-place-modal');
+      const form_delete_place = document.getElementById('form-delete-place');
+
+      delete_place_modal.addEventListener('show.bs.modal', event => {
+        const p = form_delete_place.querySelector('p');
+        p.innerHTML = '';
+        selected_place_id = $(event.relatedTarget).data('lr-place-id');
+        fetch_api_form(`api/lunch/places/${selected_place_id}`, delete_place_modal)
+          .then(data => {
+            p.appendChild(document.createTextNode('Are you sure you want to delete the place '));
+            const strong = document.createElement('strong');
+            strong.appendChild(document.createTextNode(data.name));
+            p.appendChild(strong);
+            p.appendChild(document.createTextNode('?'));
+          })
+          .catch(error => {
+            show_toast(JSON.stringify(error), 'bg-danger');
+          });
+      });
+
+      form_delete_place.addEventListener('submit', event => {
+        event.preventDefault();
+        fetch_api_form(`api/lunch/places/${selected_place_id}`, delete_place_modal, 'DELETE')
+          .then(data => {
+            show_toast('Place deleted successfully.', 'bg-success');
+            const modal = bootstrap.Modal.getInstance(delete_place_modal);
+            modal.hide();
+            load_places();
+          })
+          .catch(error => {
+            show_toast(JSON.stringify(error), 'bg-danger');
+          });
+      });
+
+
       // Search bar.
 
       const toggle_search_bar = force => {
@@ -806,8 +973,6 @@
         el.lastElementChild.classList.toggle('d-none', force == null ? undefined : !force);
       };
 
-      const input_search = document.querySelector('[type="search"]');
-
       document.getElementById('btn-search').addEventListener('click', event => {
         event.preventDefault();
         toggle_search_bar(true);
@@ -817,6 +982,7 @@
       const close_search_bar = () => {
         toggle_search_bar(false);
         input_search.value = '';
+        load_places();
       };
 
       document.getElementById('btn-close-search').addEventListener('click', event => {
@@ -824,8 +990,13 @@
         close_search_bar();
       });
 
+      let search_place_timeout = null;
       input_search.addEventListener("keydown", event => {
         if (event.key === 'Escape') close_search_bar();
+        else {
+          if (search_place_timeout) clearTimeout(search_place_timeout);
+          search_place_timeout = setTimeout(load_places, 250);
+        }
       });
 
 
@@ -835,6 +1006,7 @@
         if (sessionStorage.getItem('token')) {
           toggle_pnl_place_list(false);
           toggle_pnl_login(true);
+          load_places();
         }
         else {
           toggle_pnl_login(false);
@@ -864,7 +1036,7 @@
           username: el_user.value,
           password: el_pwd.value
         };
-        fetch_api('api/user/token/', form_login, 'POST', payload)
+        fetch_api_form('api/user/token/', form_login, 'POST', payload)
           .then(data => {
             sessionStorage.setItem('token', data.token);
             sessionStorage.setItem('username', payload.username);
